@@ -1,0 +1,270 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: 220 30% 5%;
+  --foreground: 0 0% 98%;
+
+  --card: 220 30% 5%;
+  --card-foreground: 0 0% 98%;
+
+  --popover: 220 30% 5%;
+  --popover-foreground: 0 0% 98%;
+
+  --primary: 160 100% 50%;
+  --primary-foreground: 0 0% 98%;
+
+  --secondary: 210 100% 50%;
+  --secondary-foreground: 0 0% 98%;
+
+  --muted: 210 20% 20%;
+  --muted-foreground: 210 20% 60%;
+
+  --accent: 270 100% 63%;
+  --accent-foreground: 0 0% 98%;
+
+  --destructive: 0 100% 61%;
+  --destructive-foreground: 0 0% 98%;
+
+  --border: 210 30% 12%;
+  --input: 210 30% 12%;
+  --ring: 160 100% 50%;
+
+  --radius: 0.5rem;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+    cursor: none;
+  }
+
+  html,
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-space-mono), monospace;
+    overflow-x: hidden;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-orbitron), sans-serif;
+  }
+}
+
+@layer components {
+  .gradient-text {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(to right, #00ffb2, #00d1ff, #0074f0);
+  }
+}
+
+/* Hide scrollbar but allow scrolling */
+::-webkit-scrollbar {
+  width: 0px;
+  background: transparent;
+}
+
+/* Custom selection color */
+::selection {
+  background-color: rgba(0, 255, 178, 0.2);
+  color: #fff;
+}
+
+/* Glassmorphism effects */
+.glass {
+  background: rgba(10, 26, 47, 0.2);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(0, 255, 178, 0.1);
+}
+
+/* Glow effects */
+.glow-cyan {
+  box-shadow: 0 0 15px 2px rgba(0, 255, 178, 0.3);
+}
+
+.glow-blue {
+  box-shadow: 0 0 15px 2px rgba(0, 116, 240, 0.3);
+}
+
+.glow-text-cyan {
+  text-shadow: 0 0 10px rgba(0, 255, 178, 0.5);
+}
+
+.glow-text-blue {
+  text-shadow: 0 0 10px rgba(0, 116, 240, 0.5);
+}
+
+/* Animations */
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+.float {
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes pulse-glow {
+  0% {
+    box-shadow: 0 0 5px 0px rgba(0, 255, 178, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 20px 5px rgba(0, 255, 178, 0.3);
+  }
+  100% {
+    box-shadow: 0 0 5px 0px rgba(0, 255, 178, 0.5);
+  }
+}
+
+.pulse-glow {
+  animation: pulse-glow 3s infinite;
+}
+
+/* Responsive font sizes */
+@media (max-width: 640px) {
+  h1 {
+    font-size: 2rem !important;
+  }
+  h2 {
+    font-size: 1.5rem !important;
+  }
+}
+
+/* Blockchain-specific styles */
+.hex-grid {
+  background-image: url("/images/hex-grid.svg");
+  background-repeat: repeat;
+  opacity: 0.05;
+}
+
+.data-flow {
+  position: relative;
+  overflow: hidden;
+}
+
+.data-flow::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(0, 255, 178, 0.2), transparent);
+  animation: data-flow 2s infinite;
+}
+
+@keyframes data-flow {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+/* Cybersecurity-themed styles */
+.terminal-text {
+  font-family: var(--font-space-mono), monospace;
+  color: #00ffb2;
+}
+
+.blink {
+  animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+.scan-line {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: rgba(0, 255, 178, 0.3);
+  animation: scan 2s linear infinite;
+}
+
+@keyframes scan {
+  0% {
+    top: 0;
+  }
+  100% {
+    top: 100%;
+  }
+}
+
+/* Page transitions */
+.page-transition-enter {
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+.page-transition-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 300ms, transform 300ms;
+}
+
+.page-transition-exit {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.page-transition-exit-active {
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: opacity 300ms, transform 300ms;
+}
+
+/* Neon text effect */
+.neon-text {
+  color: #fff;
+  text-shadow: 0 0 5px #00ffb2, 0 0 10px #00ffb2, 0 0 20px #00ffb2, 0 0 40px #00ffb2;
+}
+
+/* Animated border */
+.animated-border {
+  position: relative;
+  border: 1px solid rgba(0, 255, 178, 0.3);
+}
+
+.animated-border::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border: 1px solid rgba(0, 255, 178, 0.5);
+  animation: border-pulse 2s infinite;
+}
+
+@keyframes border-pulse {
+  0% {
+    opacity: 0.2;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.2;
+  }
+}
